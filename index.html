@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محمود أبو رميلة | مطوّر مواقع</title>
+<meta name="description" content="مطوّر مواقع إلكترونية — أبني مواقع تعريفية عصرية سريعة ومتجاوبة للشركات والمشاريع الصغيرة.">
+<style>
+  :root{
+    --bg:#0a0e14; --bg2:#0f1620; --card:#121a26; --border:#1e2a3a;
+    --accent:#4da3ff; --accent2:#31d0aa; --gold:#f5c518;
+    --text:#eef4fb; --muted:#93a5b8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
+  .container{max-width:1020px;margin:0 auto;padding:0 22px}
+
+  /* الشريط العلوي */
+  header{position:sticky;top:0;z-index:50;background:rgba(10,14,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:15px 0}
+  .logo{font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--text)}
+  .logo b{color:var(--accent)}
+  nav ul{display:flex;gap:26px;list-style:none}
+  nav a{color:var(--muted);text-decoration:none;font-size:.95rem;transition:.2s}
+  nav a:hover{color:var(--accent)}
+
+  /* الترحيب */
+  .hero{padding:100px 0 70px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(600px 300px at 80% 0%,rgba(77,163,255,.12),transparent),
+    radial-gradient(600px 300px at 15% 100%,rgba(49,208,170,.1),transparent)}
+  .hero>*{position:relative}
+  .badge{display:inline-block;background:rgba(77,163,255,.12);border:1px solid rgba(77,163,255,.35);color:var(--accent);padding:6px 18px;border-radius:999px;font-size:.85rem;margin-bottom:22px}
+  .hero h1{font-size:2.6rem;line-height:1.4;margin-bottom:16px}
+  .hero h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:1.15rem;max-width:600px;margin:0 auto 32px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#081018;padding:13px 34px;border-radius:10px;text-decoration:none;font-weight:700;transition:.25s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(77,163,255,.35)}
+  .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);margin-right:10px}
+  .btn.ghost:hover{border-color:var(--accent);box-shadow:none}
+
+  section{padding:64px 0}
+  h2{font-size:1.75rem;margin-bottom:26px;display:flex;align-items:center;gap:12px}
+  h2::before{content:"";width:6px;height:30px;border-radius:3px;background:linear-gradient(180deg,var(--accent),var(--accent2))}
+
+  /* لماذا أنا */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .feat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:.25s}
+  .feat:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .feat .ic{font-size:1.9rem;margin-bottom:10px;display:block}
+  .feat h3{font-size:1.02rem;margin-bottom:6px}
+  .feat p{color:var(--muted);font-size:.9rem}
+
+  /* الخدمات */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;transition:.25s}
+  .card:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .card h3{color:var(--accent);margin-bottom:8px;font-size:1.12rem}
+  .card p{color:var(--muted);font-size:.93rem}
+  .card ul{margin-top:10px;list-style:none;color:var(--muted);font-size:.9rem}
+  .card ul li::before{content:"✓ ";color:var(--accent2)}
+
+  /* الأعمال */
+  .work{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.25s;display:flex;flex-direction:column}
+  .work:hover{border-color:var(--accent2);transform:translateY(-4px)}
+  .work .thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:2.6rem}
+  .work .thumb.t1{background:linear-gradient(135deg,#1f6feb,#31d0aa)}
+  .work .thumb.t2{background:linear-gradient(135deg,#7c3aed,#1f6feb)}
+  .work .thumb.t3{background:linear-gradient(135deg,#d97706,#dc2626)}
+  .work .body{padding:18px 20px;flex:1;display:flex;flex-direction:column}
+  .work h3{margin-bottom:6px;font-size:1.05rem}
+  .work p{color:var(--muted);font-size:.9rem;flex:1}
+  .work a{color:var(--accent2);font-size:.92rem;text-decoration:none;margin-top:10px;font-weight:600}
+  .work .tag{display:inline-block;background:rgba(49,208,170,.1);border:1px solid rgba(49,208,170,.3);color:var(--accent2);font-size:.78rem;padding:3px 12px;border-radius:999px;margin-top:10px;align-self:flex-start}
+
+  /* خطوات العمل */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;counter-reset:s}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-14px;right:22px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#081018;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1rem}
+  .step h3{font-size:1rem;margin-bottom:6px;margin-top:6px}
+  .step p{color:var(--muted);font-size:.88rem}
+
+  /* معرض الصور */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  .gallery a{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--border);transition:.25s}
+  .gallery a:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .gallery img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1/1}
+
+  /* التواصل */
+  .contact{text-align:center;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .contact p{color:var(--muted);margin-bottom:28px;max-width:520px;margin-inline:auto}
+  .socials{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+  .soc{display:flex;align-items:center;gap:10px;padding:13px 24px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.98rem;transition:.25s;border:1px solid transparent}
+  .soc:hover{transform:translateY(-3px)}
+  .soc.wa{background:#25d366;color:#08130c}
+  .soc.tg{background:#229ed9;color:#081018}
+  .soc.ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff}
+  .soc.em{background:transparent;border-color:var(--border);color:var(--text)}
+  .soc.em:hover{border-color:var(--accent)}
+
+  footer{padding:24px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+  @media(max-width:640px){
+    nav ul{gap:15px;font-size:.88rem}
+    .hero h1{font-size:1.9rem}
+    .btn{padding:12px 24px;font-size:.95rem}
+    .hero .btn.ghost{margin-right:0;margin-top:10px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo"><b>محمود</b> أبو رميلة</a>
+      <ul>
+        <li><a href="#why">لماذا أنا</a></li>
+        <li><a href="#services">خدماتي</a></li>
+        <li><a href="#works">أعمالي</a></li>
+        <li><a href="#gallery">معرضي</a></li>
+        <li><a href="#contact">تواصل</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <!-- الترحيب -->
+  <div class="hero">
+    <span class="badge">متاح لمشاريع جديدة ✓</span>
+    <h1>أهلاً، أنا <span>محمود أبو رميلة</span><br>أبني مواقع تعمل من أجلك 🚀</h1>
+    <p>مطوّر مواقع إلكترونية — أحوّل فكرتك إلى موقع سريع وعصري يليق بنشاطك التجاري، من التصميم حتى التسليم الكامل.</p>
+    <a href="https://wa.me/972503062800" class="btn">💬 اطلب موقعك الآن</a>
+    <a href="#works" class="btn ghost">شاهد أعمالي</a>
+  </div>
+
+  <!-- لماذا أنا -->
+  <section id="why">
+    <h2>لماذا أعمل معي؟</h2>
+    <div class="features">
+      <div class="feat"><span class="ic">⚡</span><h3>سرعة تحميل عالية</h3><p>موقعك بيفتح بأجزاء من الثانية — العميل ما بينتظر ولا بيمل.</p></div>
+      <div class="feat"><span class="ic">📱</span><h3>متجاوب 100%</h3><p>شكل مثالي على الجوال والتابلت والكمبيوتر بدون استثناء.</p></div>
+      <div class="feat"><span class="ic">🔒</span><h3>تسليم كامل الملكية</h3><p>الكود والبيانات والدومين باسمك أنت — أنا بسلّم وبنسحب.</p></div>
+      <div class="feat"><span class="ic">🤝</span><h3>تواصل واضح</h3><p>تحديث بكل مرحلة، رد سريع، وما في مفاجآت بالسعر أو الموعد.</p></div>
+    </div>
+  </section>
+
+  <!-- الخدمات -->
+  <section id="services">
+    <h2>ماذا أقدّم؟</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>🖥️ موقع تعريفي احترافي</h3>
+        <p>موقع شركتك أو مشروعك بصفحات منظمة يشرح خدماتك ويقنع الزائر يتواصل معك.</p>
+        <ul>
+          <li>تصميم عصري يليق بهويتك</li>
+          <li>نموذج تواصل + واتساب مباشر</li>
+          <li>تهيئة أساسية لمحركات البحث</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🛒 صفحة بيع لمنتجك</h3>
+        <p>صفحة هبوط مقنعة لمنتج أو خدمة واحدة مع بوابة دفع وتسليم تلقائي.</p>
+        <ul>
+          <li>نصوص تسويقية تقنع وتبيع</li>
+          <li>ربط PayPal والبطاقات</li>
+          <li>تسليم تلقائي للعميل</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🚀 تطوير وتحسين</h3>
+        <p>عندك موقع قديم أو بطيء؟ أعيد بناءه بشكل عصري وأصلح مشاكل الأداء.</p>
+        <ul>
+          <li>رفع سرعة التحميل</li>
+          <li>تجديد التصميم بالكامل</li>
+          <li>إضافة مزايا جديدة</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- خطوات العمل -->
+  <section id="process">
+    <h2>كيف نشتغل معًا؟</h2>
+    <div class="steps">
+      <div class="step"><h3>نستمع لاحتياجك</h3><p>جلسة قصيرة نفهم فيها هدفك وجمهورك ومنافسيك.</p></div>
+      <div class="step"><h3>نصمّم ونعتمد</h3><p>تشوف تصميم الموقع قبل التنفيذ وتعدّل عليه بأريحية.</p></div>
+      <div class="step"><h3>نبني ونجهز</h3><p>تطوير كامل مع اختبارات على كل الأجهزة قبل التسليم.</p></div>
+      <div class="step"><h3>نسلّم وندعمك</h3><p>تسليم كامل بالبيانات + دليل استخدام + ضمان إصلاح.</p></div>
+    </div>
+  </section>
+
+  <!-- الأعمال -->
+  <section id="works">
+    <h2>أعمالي</h2>
+    <div class="grid">
+      <div class="work">
+        <div class="thumb t1">📖</div>
+        <div class="body">
+          <h3>موقع بيع كتاب "حدثتني نفسي"</h3>
+          <p>صفحة هبوط لمنتج رقمي مع بوابة دفع PayPal وتسليم تلقائي عبر الإيميل — مشروع حقيقي منشور.</p>
+          <a href="https://aburmelihm-afk.github.io/hadathninafsi/" target="_blank">شاهد المشروع ←</a>
+        </div>
+      </div>
+      <div class="work">
+        <div class="thumb t2">🏪</div>
+        <div class="body">
+          <h3>متجر "الأناقة"</h3>
+          <p>واجهة متجر ملابس عربية مع سلة شراء وتصنيفات منتجات — نموذج أعمال.</p>
+          <span class="tag">مشروع تدريبي</span>
+        </div>
+      </div>
+      <div class="work">
+        <div class="thumb t3">🍽️</div>
+        <div class="body">
+          <h3>موقع مطعم "البيت الدمشقي"</h3>
+          <p>حجز طاولات أونلاين مع قائمة أصناف تفاعلية وتصميم يفتح الشهية — نموذج أعمال.</p>
+          <span class="tag">مشروع تدريبي</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- معرض الصور -->
+  <section id="gallery">
+    <h2>خدماتي بالصور</h2>
+    <div class="gallery">
+      <a href="profile-banner.jpg" target="_blank"><img src="profile-banner.jpg" alt="محمود أبو رميلة — مصمم ومطور مواقع" loading="lazy"></a>
+      <a href="services-banner.jpg" target="_blank"><img src="services-banner.jpg" alt="خدمات رقمية متكاملة" loading="lazy"></a>
+      <a href="webdev-banner.jpg" target="_blank"><img src="webdev-banner.jpg" alt="تصميم وتطوير المواقع والتطبيقات" loading="lazy"></a>
+      <a href="design-banner.jpg" target="_blank"><img src="design-banner.jpg" alt="تصميم وتعديل الصور" loading="lazy"></a>
+    </div>
+  </section>
+
+  <!-- التواصل -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 style="justify-content:center">جاهز نبدأ مشروعك؟</h2>
+      <p>ابعتلي فكرتك على أي منصة تحب — برد عليك بخطة وسعر واضح خلال ساعات.</p>
+      <div class="socials">
+        <a href="https://wa.me/972503062800" class="soc wa" target="_blank">💬 واتساب</a>
+        <a href="https://t.me/mahm0ud10" class="soc tg" target="_blank">✈️ تيليجرام</a>
+        <a href="https://www.instagram.com/mahm0ud_ar" class="soc ig" target="_blank">📸 إنستقرام</a>
+        <a href="mailto:aburmelihm@gmail.com" class="soc em">📧 الإيميل</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="container">© 2026 محمود أبو رميلة — جميع الحقوق محفوظة</div>
+</footer>
+
+</body>
+</html>
